@@ -38,11 +38,11 @@ def get_date(date_str: str | None) -> str | None:
         Строка с датой в формате "ДД.ММ.ГГГГ" или None, если date_str равен None или пустой строке.
         Пример: "11.03.2024"
     """
+
     if not date_str:
         return None
 
     try:
-        # Попытка обработать разные форматы дат
         date_object = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
     except ValueError:
         date_object = datetime.strptime(date_str, "%Y-%m-%d")
