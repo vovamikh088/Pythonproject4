@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from .masks import mask_account, mask_card
+from src import mask_account, mask_card
 
 
-def mask_account_card(account_info: str) -> str:
+def mask_account_card(account_info: str) -> str | None:
     """
     Маскирует номер карты или счета в строке.
     Args:
@@ -13,7 +13,7 @@ def mask_account_card(account_info: str) -> str:
     Returns:
         Строка с замаскированным номером.
     """
-    if account_info == None:
+    if account_info is None:
         return account_info
     parts = account_info.split()
     if not parts:
@@ -25,6 +25,7 @@ def mask_account_card(account_info: str) -> str:
         return f"{parts[0]} {mask_account(''.join(parts[1:]))}"
     else:
         return account_info  # Если тип не распознан, возвращаем исходную строку
+
 
 def get_date(date_str: str | None) -> str | None:
     """

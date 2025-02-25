@@ -1,5 +1,6 @@
 import pytest
-from src.widget import mask_account_card, get_date
+from src import mask_account_card, get_date
+
 
 class TestWidget:
     @pytest.mark.parametrize(
@@ -8,11 +9,11 @@ class TestWidget:
             ("Visa 1234567890123456", "Visa 1234 **** **** 3456"),  # Карта
             ("Visa Platinum 7000792289606361", "Visa Plat **** **** 6361"),  # Карта
             ("Счет 12345678901234567890", "Счет ****7890"),  # Счет
-            ("MasterCard 1234567890", "MasterCard 1234567890"), # Неполная карта
-            ("Счет 123", "Счет 123"), # Короткий счет
+            ("MasterCard 1234567890", "MasterCard 1234567890"),  # Неполная карта
+            ("Счет 123", "Счет 123"),  # Короткий счет
             ("Invalid Input", "Invalid Input"),  # Не карта и не счет
-            ("", ""), # Пустая строка
-            (None, None), # None
+            ("", ""),  # Пустая строка
+            (None, None)  # None
         ],
     )
     def test_mask_account_card(self, input_string, expected_mask):
